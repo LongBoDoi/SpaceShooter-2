@@ -1,0 +1,89 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>f395fca8-1a50-4203-b15d-ce437174f56a</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>main.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>SpaceShooter</Name>
+    <RootNamespace>SpaceShooter</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Base\Animation\Animation.py" />
+    <Compile Include="Base\Animation\__init__.py" />
+    <Compile Include="Base\Constants\AnimationConstants.py" />
+    <Compile Include="Base\Constants\ImageConstants.py" />
+    <Compile Include="Base\Constants\ObjectConstants.py" />
+    <Compile Include="Base\Constants\__init__.py" />
+    <Compile Include="Base\Objects\BaseObject.py" />
+    <Compile Include="Base\Objects\Bullet.py" />
+    <Compile Include="Base\Objects\Meteor.py" />
+    <Compile Include="Base\Objects\Spaceship.py" />
+    <Compile Include="Base\Objects\__init__.py" />
+    <Compile Include="Base\Textures\Texture.py" />
+    <Compile Include="Base\Textures\Textures.py" />
+    <Compile Include="Base\Textures\__init__.py" />
+    <Compile Include="Base\__init__.py" />
+    <Compile Include="Gameplay.py" />
+    <Compile Include="main.py" />
+    <Compile Include="Utility\GameUtility.py" />
+    <Compile Include="Utility\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Base\" />
+    <Folder Include="Base\Constants\" />
+    <Folder Include="Base\Animation\" />
+    <Folder Include="Base\Objects\" />
+    <Folder Include="Base\Textures\" />
+    <Folder Include="Utility\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Images\explosions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\background.jpg" />
+    <Content Include="Resources\Images\blue_bullet.png" />
+    <Content Include="Resources\Images\Bokehlicia-Captiva-Rocket.ico" />
+    <Content Include="Resources\Images\Bomb.png" />
+    <Content Include="Resources\Images\Boss.png" />
+    <Content Include="Resources\Images\Boss_health_bar.png" />
+    <Content Include="Resources\Images\Boss_health_frame.png" />
+    <Content Include="Resources\Images\bullet_icon.png" />
+    <Content Include="Resources\Images\d_pad.png" />
+    <Content Include="Resources\Images\d_pad_frame.png" />
+    <Content Include="Resources\Images\explosions\new_explosion_1.png" />
+    <Content Include="Resources\Images\explosions\new_ship_explosion.png" />
+    <Content Include="Resources\Images\explosions\ship-explosion.png" />
+    <Content Include="Resources\Images\game_logo.png" />
+    <Content Include="Resources\Images\life.png" />
+    <Content Include="Resources\Images\Overheat_bar.png" />
+    <Content Include="Resources\Images\Overheat_frame.png" />
+    <Content Include="Resources\Images\red_bullet.png" />
+    <Content Include="Resources\Images\Rocks.png" />
+    <Content Include="Resources\Images\rock_small.png" />
+    <Content Include="Resources\Images\Score_background.png" />
+    <Content Include="Resources\Images\spaceship.png" />
+    <Content Include="Resources\Images\speed_bonus.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
