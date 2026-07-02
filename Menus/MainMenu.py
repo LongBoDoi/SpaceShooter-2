@@ -11,6 +11,7 @@ class MainMenu(Menu):
         GameUtility.drawTexture(self, Textures.GameLogo, (0.76, 0.9, 0.5, 0.2))
         GameButton(self, "Single Player", ComponentConstants.SINGLE_PLAY_BUTTON_POS, self.openSingleplayMenu)
         GameButton(self, "Multiplayer", ComponentConstants.MULTI_PLAY_BUTTON_POS, self.openMultiplayMenu)
+        GameButton(self, "Settings", ComponentConstants.SETTINGS_BUTTON_POS, self.openSettingsMenu)
         GameButton(self, "Exit", ComponentConstants.EXIT_BUTTON_POS, self.exitGame)
 
     def openSingleplayMenu(self):
@@ -20,6 +21,10 @@ class MainMenu(Menu):
     def openMultiplayMenu(self):
         from .MultiplayMenu import MultiplayMenu
         GameUtility.openMenu(MultiplayMenu(self.App))
+
+    def openSettingsMenu(self):
+        from .SettingsMenu import SettingsMenu
+        GameUtility.openMenu(SettingsMenu(self.App))
 
     def exitGame(self):
         self.App.stop()

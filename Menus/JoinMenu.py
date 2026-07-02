@@ -34,7 +34,7 @@ class JoinMenu(Menu):
         GameUtility.openMenu(MultiplayMenu(self.App))
 
     def update(self, dt):
-        # Nếu nhận được thông báo bắt đầu game từ phía chủ phòng thì bắt đầu trò chơi
-        if self.Client.receiveData() == SocketData.START_GAME_CODE:
-            self.Client.sendData(SocketData.CLIENT_DATA_RECEIVED_CODE)
+        # Poll không chặn để UI vẫn mượt; khi nhận lệnh bắt đầu thì xác nhận và vào ván.
+        if self.Client.poll() == SocketData.START_GAME_CODE:
+            self.Client.sendMessage(SocketData.CLIENT_DATA_RECEIVED_CODE)
             GameUtility.openMenu(Gameplay(self.App, self.Client))

@@ -1,6 +1,6 @@
 from .Effect import Effect
 from .RespawnEffect import RespawnEffect
-from Base.Constants import ObjectConstants, ImageConstants
+from Base.Constants import ObjectConstants
 from Base.Animation import Animations
 
 class DeadEffect(Effect):
@@ -12,10 +12,12 @@ class DeadEffect(Effect):
         self.Spaceship.Invulnerable = True
         self.Spaceship.setAnimation(Animations.SpaceshipDeadAnimation)
         self.Spaceship.Lives -= 1
-        self.Spaceship.LifeBar.setRect(ImageConstants.LIFEBAR_CLIP_RECT[self.Spaceship.Lives])
+        self.Spaceship.updateLifeDisplay()   # thanh máu + tim phụ (mạng > 3)
 
         if self.Spaceship.Lives == 0:
             self.Spaceship.Inactive = True
+            self.Spaceship.removeBadge()     # hết mạng hẳn -> gỡ nhãn P1/P2
+            self.Spaceship.clearBuffs()      # và xoá hiệu ứng + HUD đang chạy
 
     def removeEffects(self):
         self.Spaceship.Alive = True

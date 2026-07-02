@@ -12,7 +12,20 @@ BUTTON_HEIGHT = 0.05
 # Button Rect
 SINGLE_PLAY_BUTTON_POS = (None, 0.6)
 MULTI_PLAY_BUTTON_POS = (None, 0.5)
-EXIT_BUTTON_POS = (None, 0.4)
+SETTINGS_BUTTON_POS = (None, 0.4)
+EXIT_BUTTON_POS = (None, 0.3)
+
+# Settings menu
+SETTINGS_TITLE_POS = (None, 0.72)
+SETTINGS_DIFFICULTY_POS = (None, 0.58)
+SETTINGS_FULLSCREEN_POS = (None, 0.48)
+SETTINGS_BACK_POS = (None, 0.34)
+
+# Game over screen
+GAME_OVER_TITLE_POS = (None, 0.62)
+GAME_OVER_TITLE_FONT_SIZE = 90
+GAME_OVER_BUTTON1_POS = (None, 0.44)   # Play Again (chơi đơn) / Main Menu (nhiều người)
+GAME_OVER_BUTTON2_POS = (None, 0.36)   # Main Menu (chơi đơn)
 
 MULTIPLAY_HOST_BUTTON_POS = (None, 0.6)
 MULTIPLAY_JOIN_BUTTON_POS = (None, 0.5)

@@ -25,6 +25,17 @@ METEOR_ANIMATION_ROW_COUNT = 1
 METEOR_ANIMATION_COL_COUNT = 16
 METEOR_ANIMATION_SPEED = 0.6
 
+# Power-up Animation (single static 64px cell each; indexed by power-up type).
+# One row of 3 cells, so no Kivy origin-flip concern.
+POWERUP_ANIMATION_RECTS = [(0, 0, 64, 64), (64, 0, 64, 64), (128, 0, 64, 64),
+                           (192, 0, 64, 64), (256, 0, 64, 64), (320, 0, 64, 64)]
+POWERUP_ANIMATION_ROW_COUNT = 1
+POWERUP_ANIMATION_COL_COUNT = 1
+POWERUP_ANIMATION_SPEED = 0
+
+# Aura tàu (tĩnh, tô màu theo hiệu ứng): cell 0 = vòng khiên, cell 1 = quầng sáng.
+AURA_RECTS = [(0, 0, 128, 128), (128, 0, 128, 128)]
+
 # Explosion Animation
 EXPLOSION_ANIMATION_RECT = (0, 0, 256, 256)
 EXPLOSION_ANIMATION_ROW_COUNT = 6
@@ -36,3 +47,18 @@ SPACESHIP_EXPLOSION_ANIMATION_RECT = (0, 0, 192, 192)
 SPACESHIP_EXPLOSION_ANIMATION_ROW_COUNT = 8
 SPACESHIP_EXPLOSION_ANIMATION_COL_COUNT = 8
 SPACESHIP_EXPLOSION_ANIMATION_SPEED = 0.65
+
+# Boss Animation (single static frame; texture is swapped per variant)
+BOSS_ANIMATION_RECT = (0, 0, 256, 256)
+BOSS_ANIMATION_ROW_COUNT = 1
+BOSS_ANIMATION_COL_COUNT = 1
+BOSS_ANIMATION_SPEED = 0
+
+# Boss Projectile Animation (32px cells, 8 pulse frames per row).
+# NOTE: Kivy get_region uses a bottom-left origin, so the PNG's TOP row (red
+# plasma) is selected with y=32 and the BOTTOM row (violet void) with y=0.
+BOSS_PROJECTILE_PLASMA_RECT = (0, 32, 32, 32)
+BOSS_PROJECTILE_VOID_RECT = (0, 0, 32, 32)
+BOSS_PROJECTILE_ROW_COUNT = 1
+BOSS_PROJECTILE_COL_COUNT = 8
+BOSS_PROJECTILE_SPEED = 0.4

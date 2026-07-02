@@ -10,6 +10,9 @@ class GameButton(Button):
         self.text = text
         self.size_hint = len(text) * ComponentConstants.TEXT_WIDTH_MULTIPLIER, ComponentConstants.BUTTON_HEIGHT
         x, y = pos
+        # Ghi nhớ cách canh vị trí để setText() sau này giữ đúng bố cục.
+        self._top = y
+        self._centered = x is None
         if x is None:
             x = 0.5 + self.size_hint_x / 2
         self.pos_hint = {"right": x, "top": y}
@@ -38,6 +41,15 @@ class GameButton(Button):
         self.color = ComponentConstants.BUTTON_HOVER_COLOR
         if self.Callback is not None:
             self.Callback()
+
+    ##
+    # Đổi nhãn nút và điều chỉnh lại bề rộng (canh giữa nếu nút vốn canh giữa).
+    ###
+    def setText(self, text):
+        self.text = text
+        self.size_hint_x = len(text) * ComponentConstants.TEXT_WIDTH_MULTIPLIER
+        x = 0.5 + self.size_hint_x / 2 if self._centered else self.pos_hint["right"]
+        self.pos_hint = {"right": x, "top": self._top}
 
     def free(self):
         self.Menu.remove_widget(self)

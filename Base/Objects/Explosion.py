@@ -18,6 +18,20 @@ class Explosion(BaseObject):
                                             ObjectConstants.EXPLOSION_SPACESHIP_SCREEN_HEIGHT),
                                             Animations.SpaceshipExplosionAnimation,
                                             obj.Gameplay)
+        if obj.Name == "Boss":
+            super(Explosion, self).__init__((obj.X + ObjectConstants.EXPLOSION_BOSS_OFFSET_X,
+                                            obj.Y + ObjectConstants.EXPLOSION_BOSS_OFFSET_Y,
+                                            ObjectConstants.EXPLOSION_BOSS_SCREEN_WIDTH,
+                                            ObjectConstants.EXPLOSION_BOSS_SCREEN_HEIGHT),
+                                            Animations.SpaceshipExplosionAnimation,
+                                            obj.Gameplay)
+        if obj.Name == "Bullet":
+            super(Explosion, self).__init__((obj.X + ObjectConstants.EXPLOSION_BULLET_OFFSET_X,
+                                            obj.Y + ObjectConstants.EXPLOSION_BULLET_OFFSET_Y,
+                                            ObjectConstants.EXPLOSION_BULLET_SCREEN_WIDTH,
+                                            ObjectConstants.EXPLOSION_BULLET_SCREEN_HEIGHT),
+                                            Animations.ExplosionAnimation,
+                                            obj.Gameplay)
 
     def update(self):
         super().update()

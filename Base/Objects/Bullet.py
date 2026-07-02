@@ -5,15 +5,29 @@ from Base.Constants import ObjectConstants
 from Base.Animation import Animations
 
 class Bullet(BaseObject):
-    def __init__(self, player):
-        super(Bullet, self).__init__((player.X + ObjectConstants.BULLET_SCREEN_OFFSET_X[player.BulletCount - 1],
-                                         player.Y + ObjectConstants.BULLET_SCREEN_OFFSET_Y,
-                                         ObjectConstants.BULLET_SCREEN_WIDTH,
-                                         ObjectConstants.BULLET_SCREEN_HEIGHT),
-                                         Animations.BulletAnimation[player.BulletCount - 1],
-                                         player.Gameplay)
+    # Đạn người chơi chỉ va chạm với thiên thạch và boss.
+    CollisionTargets = ("Meteor", "Boss")
+    # Viên đạn là tia mảnh nằm giữa khung -> hộp va chạm nhỏ.
+    HitboxScale = 0.5
+
+    ##
+    # Tạo đạn tại toạ độ cho trước. Nhận toạ độ tường minh (thay vì đối tượng
+    # player) để phía nhận dữ liệu multiplayer tái tạo lại đúng viên đạn của
+    # người chơi bên kia. Xem Spaceship.doShooting / Gameplay.createBullets.
+    ###
+    def __init__(self, gameplay, x, y, bulletCount, color=(1, 1, 1, 1)):
+        super(Bullet, self).__init__((x,
+                                      y,
+                                      ObjectConstants.BULLET_SCREEN_WIDTH,
+                                      ObjectConstants.BULLET_SCREEN_HEIGHT),
+                                     Animations.BulletAnimation[bulletCount - 1],
+                                     gameplay)
         self.Dy = ObjectConstants.BULLET_SPEED_Y
+        # Sát thương lên boss tỉ lệ với số nòng đạn hiện tại.
+        self.Damage = bulletCount * 2
         self.Name = "Bullet"
+        # Tô đạn theo màu tàu đã bắn (sprite gốc trung tính nên tô ra màu sạch).
+        self.Animation.Texture.Image.color = color
 
     ##
     # OVERRIDES
@@ -25,6 +39,17 @@ class Bullet(BaseObject):
                 self.Inactive = True
                 otherObject.Inactive = True
                 Explosion(otherObject)
+                # Đếm số thiên thạch bị bắn hạ để kích hoạt boss.
+                self.Gameplay.MeteorsDestroyed += 1
+                # Cơ hội rơi vật phẩm tại vị trí thiên thạch (Host/chơi đơn quyết định).
+                self.Gameplay.trySpawnPowerUp(otherObject.X, otherObject.Y)
+        elif otherObject.Name == "Boss" and not otherObject.Intro:
+            if self.collidesWith(otherObject):
+                self.Inactive = True
+                Explosion(self)
+                # Máu boss là dữ liệu do Host quản lý; Client chỉ tạo hiệu ứng.
+                if not self.Gameplay.IsClient:
+                    otherObject.takeDamage(self.Damage)
 
     def update(self):
         super().update()

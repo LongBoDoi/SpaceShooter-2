@@ -21,8 +21,12 @@ class GameUtility:
     # @params: newObject (BaseObject): Vật thể cần thêm
     ###
     def addNewObject(gameplay, newObject):
-        newObject.ObjectIndex = gameplay.ListObjects.__len__()
         gameplay.ListObjects.append(newObject)
+        # Đưa vật thể vào nhóm va chạm tương ứng (nếu có) để các vật thể tấn
+        # công chỉ phải quét đúng nhóm mục tiêu thay vì toàn bộ danh sách.
+        group = gameplay.CollisionGroups.get(newObject.Name)
+        if group is not None:
+            group.append(newObject)
         GameUtility.drawTexture(gameplay, newObject.Animation.Texture, (newObject.X, newObject.Y, newObject.Width, newObject.Height))
 
     ##
@@ -41,14 +45,6 @@ class GameUtility:
                 "Data": (newObject.X, newObject.Dx, newObject.Dy)
             })
     
-    ##
-    # Hàm thực hiện xóa một vật thể khỏi game
-    # @params: object (BaseObject): Vật thể cần xóa
-    ###
-    def removeObject(gameplay, oldObject):
-        gameplay.remove_widget(oldObject.Animation.Texture.Image)
-        gameplay.ListObjects.remove(oldObject)
-
     def openMenu(menu):
         Clock.schedule_interval(menu.update, 1.0 / 60.0)
         menu.App.root = menu

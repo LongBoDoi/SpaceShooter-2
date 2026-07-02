@@ -20,7 +20,10 @@ class HostMenu(Menu):
         GameUtility.drawTexture(self, Textures.GameLogo, (0.76, 0.9, 0.5, 0.2))
 
     def startMultiplayerGame(self):
-        self.Server.sendDataAndWait(SocketData.START_GAME_CODE)
+        # Báo client bắt đầu, chờ client xác nhận đã vào ván rồi mới mở Gameplay
+        # (đảm bảo hai bên vào cùng lúc trước khi trao đổi dữ liệu mỗi khung).
+        self.Server.sendMessage(SocketData.START_GAME_CODE)
+        self.Server.receiveMessage()
         GameUtility.openMenu(Gameplay(self.App, self.Server))
 
     def goToPreviousMenu(self):

@@ -17,3 +17,16 @@ BAR_POS_X = [0.135, 0.135, 0.995]
 def OVERHEAT_BAR_POS_X(overheatLevel, playerIndex):
     return BAR_POS_X[playerIndex] - OVERHEAT_BAR_SCREEN_WIDTH * (1 - overheatLevel)
 OVERHEAT_BAR_POS_Y = 0.94
+
+# Boss health bar (1200x70 source, drained from the right like the overheat bar)
+BOSS_HEALTH_BAR_SCREEN_WIDTH = 0.6
+BOSS_HEALTH_BAR_SCREEN_HEIGHT = 0.025
+BOSS_HEALTH_BAR_RIGHT = 0.8                # right edge of the full bar
+BOSS_HEALTH_BAR_POS_Y = 0.965
+BOSS_HEALTH_FRAME_SCREEN_RECT = (BOSS_HEALTH_BAR_RIGHT, BOSS_HEALTH_BAR_POS_Y,
+                                 BOSS_HEALTH_BAR_SCREEN_WIDTH, BOSS_HEALTH_BAR_SCREEN_HEIGHT)
+BOSS_HEALTH_TEXT_POS = (None, 0.995)
+def BOSS_HEALTH_BAR_CLIP_RECT(ratio):
+    return (0, 0, max(1, int(1200 * ratio)), 70)
+def BOSS_HEALTH_BAR_POS_X(ratio):
+    return BOSS_HEALTH_BAR_RIGHT - BOSS_HEALTH_BAR_SCREEN_WIDTH * (1 - ratio)

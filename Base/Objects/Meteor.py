@@ -5,7 +5,9 @@ from Base.Constants import ObjectConstants
 from Base.Animation import Animations
 
 class Meteor(BaseObject):
-    def __init__(self, gameplay, 
+    Name = "Meteor"
+
+    def __init__(self, gameplay,
                 x=None,
                 dx=None,
                 dy=None):
@@ -21,7 +23,6 @@ class Meteor(BaseObject):
                                      gameplay)                                  # Gameplay
         self.Dx = dx
         self.Dy = dy
-        self.Name = "Meteor"
 
     def update(self):
         super().update()
